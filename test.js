@@ -326,7 +326,7 @@ function topSalary(salaries) {
     if (!el || el.val < val) el = { key, val }
   }
 
-  return el?.key
+  return el.key
 }
 
 // let salaries = {
@@ -721,9 +721,9 @@ function delay(func, delay) {
   }
 }
 
-function f(x) {
-  console.log(x);
-}
+// function f(x) {
+//   console.log(x);
+// }
 
 // // создаём обёртки
 // let f1000 = delay(f, 1000);
@@ -792,9 +792,9 @@ function throttle(func, ms) {
   return wrapper;
 }
 
-function f(a) {
-  console.log(a)
-}
+// function f(a) {
+//   console.log(a)
+// }
 
 // // f1000 передаёт вызовы f максимум раз в 1000 мс
 // let f1000 = throttle(f, 1000);
@@ -1095,13 +1095,13 @@ class Rabbit extends Object {
 // console.log((rabbit.hasOwnProperty('name')));
 
 
-function delay(ms) {
+function delay2(ms) {
   return new Promise((resolve => {
     setTimeout(() => resolve(), ms)
   }))
 }
 
-// delay(3000).then(() => console.log('выполнилось через 3 секунды'));
+// delay2(3000).then(() => console.log('выполнилось через 3 секунды'));
 
 
 // *************************************************
@@ -1504,7 +1504,7 @@ const defangIPaddr = function(address) {
  * @param {number} n
  * @return {number[]}
  */
-const shuffle = function(nums, n) {
+const shuffle4 = function(nums, n) {
   for (let i=0; i < nums.length/n; i++) {
     [nums[i+1], nums[n + i]] = [nums[n + i], nums[i+1]]
   }
@@ -2175,3 +2175,115 @@ const bstFromPreorder = function(preorder) {
 // preorder = [1,3]
 //
 // console.log(bstFromPreorder(preorder));
+
+
+
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+}
+
+ /**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+const addTwoNumbers = function(l1, l2) {
+   let num = 0
+
+   function nodeConcat(l1, l2) {
+     if (!l1 && !l2) {
+       return num ? new ListNode(num) : null
+     }
+
+     let sum = 0
+
+     if (!l1) {
+       l1 = new ListNode(num)
+     } else if (!l2) {
+       l2 = new ListNode(num)
+     } else {
+       sum += num
+     }
+
+     sum += l1.val + l2.val
+     num = Math.trunc(sum / 10)
+
+     return new ListNode(sum % 10, nodeConcat(l1.next, l2.next))
+   }
+
+   return nodeConcat(l1, l2)
+};
+
+
+function createLinkedList(arr) {
+  let linkedList = null
+
+  function add(node, val) {
+      if (linkedList) {
+        if (node.next) add(node.next, val)
+        else node.next = new ListNode(val)
+      } else {
+        linkedList = new ListNode(val)
+      }
+  }
+
+  for (let i of arr) {
+    add(linkedList, i)
+  }
+
+  return linkedList
+}
+
+// let l1 = [2,4,3]
+// let l2 = [5,6,4]
+//
+// l1 = [0]
+// l2 = [0]
+
+// l1 = [9,9,9,9,9,9,9]
+// l2 = [9,9,9,9]
+//   8 9 9 9 0 0 0 1
+
+// ********************************
+// l1 = createLinkedList(l1)
+// l2 = createLinkedList(l2)
+//
+// console.log(addTwoNumbers(l1, l2));
+
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+const lengthOfLongestSubstring = function(s) {
+  if (s.length === 0) return 0
+  if (s.length === 1) return 1
+
+  let a = ''
+  let b = ''
+
+  for (let i of s) {
+    if (!a.includes(i)) {
+      a += i
+    } else if (a.length >= b.length) {
+      b = a
+      a = i
+    } else {
+      a = i
+    }
+  }
+
+  return b.length >= a.length ? b.length : a.length
+};
+
+
+let s = "abcabcbb"
+// s = "bbbbb"
+// s = "pwwkew"
+// s = ""
+s = "au"
+s = "dvdf"
+
+console.log(lengthOfLongestSubstring(s));
