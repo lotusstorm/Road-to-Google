@@ -2279,11 +2279,93 @@ const lengthOfLongestSubstring = function(s) {
 };
 
 
-let s = "abcabcbb"
-// s = "bbbbb"
-// s = "pwwkew"
-// s = ""
-s = "au"
-s = "dvdf"
+// let s = "abcabcbb"
+// // s = "bbbbb"
+// // s = "pwwkew"
+// // s = ""
+// s = "au"
+// s = "dvdf"
+//
+// console.log(lengthOfLongestSubstring(s));
 
-console.log(lengthOfLongestSubstring(s));
+
+const rangeSumBST2 = function(root, low, high) {
+  const store = {}
+  let sum = 0
+
+  let node = null
+
+  for (let val of [low, high]) {
+    node = root
+
+    while (node) {
+      if (node.val >= low && node.val <= high) {
+        if (!store[node.val]) {
+          sum += node.val
+          store[node.val] = true
+        }
+      }
+
+      if (node.val > val || node.val === high) {
+        node = node.left
+        continue
+      }
+
+      if (node.val < val || node.val === low) {
+        node = node.right
+      }
+    }
+  }
+
+  return sum
+};
+
+
+/**
+ * @param {TreeNode} root
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+const rangeSumBST = function(root, low, high) {
+  let sum = 0
+
+  function helper(root,low,high) {
+    if(root){
+      if(root.val >=low && root.val <= high) sum += root.val;
+      if(root.val > low) helper(root.left,low,high);
+      if(root.val < high) helper(root.right,low,high);
+    }
+  }
+
+  helper(root,low,high)
+
+  return sum
+};
+
+
+let root = [10,5,15,3,7,null,18]
+let low = 7
+let high = 15
+
+// root = [10,5,15,3,7,13,18,1,null,6]
+// low = 6
+// high = 10
+
+// root = [18,9,27,6,15,24,30,3,null,12,null,21]
+// low = 18
+// high = 24
+
+root = [25,16,34,13,22,31,37,10,null,19,null,28]
+low = 22
+high = 37
+
+//         25
+//     16      34
+//   13  22  31  37
+// 10   19  28
+
+
+// 25 34 22 31 37 28
+root = bstFromPreorder(root)
+console.log(rangeSumBST(root, low, high));
