@@ -2289,6 +2289,7 @@ const lengthOfLongestSubstring = function(s) {
 // console.log(lengthOfLongestSubstring(s));
 
 
+// WRONG
 const rangeSumBST2 = function(root, low, high) {
   const store = {}
   let sum = 0
@@ -2344,9 +2345,9 @@ const rangeSumBST = function(root, low, high) {
 };
 
 
-let root = [10,5,15,3,7,null,18]
-let low = 7
-let high = 15
+// let root = [10,5,15,3,7,null,18]
+// let low = 7
+// let high = 15
 
 // root = [10,5,15,3,7,13,18,1,null,6]
 // low = 6
@@ -2356,9 +2357,9 @@ let high = 15
 // low = 18
 // high = 24
 
-root = [25,16,34,13,22,31,37,10,null,19,null,28]
-low = 22
-high = 37
+// root = [25,16,34,13,22,31,37,10,null,19,null,28]
+// low = 22
+// high = 37
 
 //         25
 //     16      34
@@ -2367,5 +2368,43 @@ high = 37
 
 
 // 25 34 22 31 37 28
-root = bstFromPreorder(root)
-console.log(rangeSumBST(root, low, high));
+// root = bstFromPreorder(root)
+// console.log(rangeSumBST(root, low, high));
+
+
+
+{
+  // const app = document.getElementById('app')
+  //
+  // let template = `
+  //   <button>Confirm modal</button>
+  // `
+  //
+  // app.insertBefore()
+
+  // let button = document.createElement('button')
+  // button.value = 'fff'
+
+  // app.appendChild(button)
+}
+
+
+/**
+ * @param {number[]} encoded
+ * @param {number} first
+ * @return {number[]}
+ */
+const decode = function(encoded, first) {
+  let res = [first]
+
+  for (let i=0; i<encoded.length; i++) {
+    res.push(encoded[i] ^ res[i])
+  }
+
+  return res
+};
+
+//
+// let arr = [1,2,3]
+// let first = 1
+// console.log(decode(arr, first));

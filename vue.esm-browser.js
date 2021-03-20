@@ -4154,6 +4154,7 @@ function createAppAPI(render, hydrate) {
                 return app;
             },
             mount(rootContainer, isHydrate) {
+                debugger
                 if (!isMounted) {
                     const vnode = createVNode(rootComponent, rootProps);
                     // store app context on the root VNode.
