@@ -2482,6 +2482,68 @@ const singleNumber2 = function(nums) {
 
 
 
+function PascalRectangle(val) {
+  const res = []
+  const memo = {}
+
+  for (let i=0; i<val; i++) {
+    const store = [1]
+    let last = res[res.length-1]
+    if (last) {
+      for (let j = 0; j < last.length - 1; j++) {
+        if (memo[`${last[j]},${last[j + 1]}`] || memo[`${last[j + 1]},${last[j]}`]) {
+          store.push(memo[`${last[j]},${last[j + 1]}`] || memo[`${last[j + 1]},${last[j]}`])
+        } else {
+          let sum = last[j] + last[j + 1]
+          memo[`${last[j]},${last[j + 1]}`] = sum
+          store.push(sum)
+        }
+      }
+      store.push(1)
+    }
+
+    res.push(store)
+  }
+
+  return res
+}
 
 
+
+// const val = 20
+// console.log(PascalRectangle(val));
+
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+const maxDepth3 = function(s) {
+  let depth = 0
+  let stack = 0
+
+  if (s.length > 1) {
+    for (let i=0; i<s.length; i++) {
+      if (s[i] === '(') {
+        stack++
+      } else if (s[i] === ')') {
+        depth = Math.max(stack, depth)
+        stack--
+      }
+    }
+  }
+
+  return depth
+};
+
+
+
+// let s = "(1+(2*3)+((8)/4))+1"
+// s = "(1)+((2))+(((3)))"
+// s = "1+(2*3)/(2-1)"
+// s = "1"
+// s = "8*((1*(5+6))*(8/6))"
+
+// console.log(maxDepth3(s));
 
