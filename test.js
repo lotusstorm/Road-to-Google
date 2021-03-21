@@ -2425,6 +2425,14 @@ const maxDepth = function(root) {
   return helper(root, 0)
 };
 
+const maxDepth2 = function(root) {
+
+  if (!root) return 0
+  let left = maxDepth2(root.left)
+  let right = maxDepth2(root.right)
+  return Math.max(left, right) + 1
+};
+
 
 // let root = [3,9,20,null,null,15,7]
 // // root = [1,null,2]
@@ -2453,6 +2461,16 @@ const singleNumber = function(nums) {
   for (let i in store) {
     if (store[i] === 1) return i
   }
+};
+
+
+const singleNumber2 = function(nums) {
+  let res = 0
+  for (let i=0; i<nums.length; i++) {
+    res ^= nums[i]
+  }
+
+  return res
 };
 
 
