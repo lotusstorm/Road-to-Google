@@ -2408,3 +2408,62 @@ const decode = function(encoded, first) {
 // let arr = [1,2,3]
 // let first = 1
 // console.log(decode(arr, first));
+
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const maxDepth = function(root) {
+
+  function helper(root, depth) {
+    if (!root) return depth
+
+    return Math.max(helper(root.left, depth + 1), helper(root.right, depth + 1))
+  }
+
+  return helper(root, 0)
+};
+
+
+// let root = [3,9,20,null,null,15,7]
+// // root = [1,null,2]
+// // root = []
+// // root = [0]
+//
+// root = bstFromPreorder(root)
+// console.log(maxDepth(root));
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const singleNumber = function(nums) {
+  const store = {}
+
+  for (let i=0; i<nums.length; i++) {
+    if (nums[i] in store) {
+      store[nums[i]] += 1
+    } else {
+      store[nums[i]] = 1
+    }
+  }
+
+  for (let i in store) {
+    if (store[i] === 1) return i
+  }
+};
+
+
+// let nums = [2,2,1]
+// nums = [4,1,2,1,2]
+// nums = [1]
+//
+// console.log(singleNumber(nums));
+
+
+
+
+
+
