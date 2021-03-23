@@ -1,0 +1,59 @@
+<body>
+	<div class="moon circle">
+		<span class="crater circle"></span>
+		<span class="highlight circle"></span>
+	</div>
+</body>
+<style>
+.circle {
+  border-radius: 50%;
+  position: absolute;
+}
+body {
+  margin: 0;
+  background: #06398A;
+  padding: 78px;
+}
+.moon {
+  background: #C9CCD1;
+  width: 240px;
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+.moon::before {
+  content: '';
+  width: 240px;
+  height: 240px;
+  border-radius: 43% 43% 55% 43%;
+  background: #E1E6EA;
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+}
+.crater {
+  background: #AFB2B8;
+  width: 50px;
+  height: 50px;
+  top: 54%;
+  left: 54%;
+}
+
+.highlight {
+	background: #FFF;
+  width: 30px;
+  height: 30px;
+  top: 25px;
+  left: 50%;
+}
+.highlight::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: 25px;
+  right: 35px;
+  background: #FFF;
+  border-radius: 50%;
+}
+</style>
