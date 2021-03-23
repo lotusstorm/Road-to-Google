@@ -1,0 +1,215 @@
+<body>
+<div class="main">
+	<div class="flag">
+		<div class="flag__wrapper">
+			<div class="flag__flagpole"></div>
+			<div class="flag__platform"></div>
+		</div>
+		<div class="flag__base"></div>
+	</div>
+	<div class="truck">
+		<div class="truck__cap"></div>
+		<div class="truck__container"></div>
+		<div class="truck__platform">
+			<div class="top-block"></div>
+			<div class="mid-block"></div>
+			<div class="bottom-block"></div>
+		</div>
+		<div class="truck__wheels">
+			<div class="wheel"></div>
+			<div class="wheel"></div>
+			<div class="wheel"></div>
+		</div>
+	</div>
+</div>
+</body>
+<style>
+/*
+#f45a3b,
+#000000,
+#d8d8d8,
+#ff0000,
+#999999,
+#666666,
+#222222,
+#ffffff
+*/
+:root {
+    --color-1: #f45a3b;
+    --color-2: #000000;
+    --color-3: #d8d8d8;
+    --color-4: #ff0000;
+    --color-5: #999999;
+    --color-6: #666666;
+    --color-7: #222222;
+    --color-8: #ffffff;
+}
+
+html {
+    background-image: linear-gradient(45deg, var(--color-1), var(--color-8));
+    box-sizing: border-box;
+}
+
+.main {
+    width: 540px;
+    height: 780px;
+    position: absolute;
+    top: 0;
+    bottom: 8px;
+    left: 32px;
+    right: 0;
+    margin: auto auto;
+}
+
+.flag {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: 75px;
+    justify-content: flex-end;
+}
+
+.flag__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin-left: 35px;
+}
+
+.flag__flagpole {
+    --flagpole-width: 5px;
+
+    width: var(--flagpole-width);
+    height: 320px;
+    background: var(--color-5);
+    position: relative;
+}
+
+.flag__flagpole::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-right: 65px solid var(--color-4);
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    top: 4px;
+    right: calc(var(--flagpole-width));
+}
+
+
+.flag__platform {
+    position: relative;
+    width: 53px;
+    height: 38px;
+    border: 1px solid var(--color-7);
+    border-bottom: none;
+    background: var(--color-6);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.flag__platform::before {
+		content: "";
+    width: 100%;
+    height: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--color-7);
+}
+
+.flag__base {
+    border-bottom: 56px solid var(--color-7);
+    border-left: 20px solid transparent;
+    height: 0;
+    width: 75px;
+}
+
+
+.truck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.truck__cap {
+    width: 98%;
+    height: 80px;
+    background: var(--color-3);
+    border-radius: 11% 45% 50% 50% / 70% 70% 40% 40%;
+    margin-bottom: -31px;
+}
+
+.truck__container {
+    width: 96%;
+    height: 145px;
+    border-radius: 0 0 25px 25px;
+    background: var(--color-1);
+		position: relative;
+}
+
+.truck__container::before {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 104%;
+    border-radius: 25px;
+    background: var(--color-4);
+    left: -12px;
+    top: 0;
+}
+
+.truck__platform {
+    width: 90.6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-block {
+    border-bottom: 10px solid var(--color-7);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    height: 0;
+    width: 96%;
+}
+
+.mid-block {
+    height: 30px;
+    background: var(--color-7);
+    width: 100%;
+}
+
+.bottom-block {
+    border-bottom: 70px solid var(--color-7);
+    border-left: 65px solid transparent;
+    border-right: 65px solid transparent;
+    height: 0;
+    width: 73%;
+    transform: rotate(180deg);
+}
+
+.truck__wheels {
+    width: 90.6%;
+		display: flex;
+    flex-flow: row;
+    align-items: center;
+    position: absolute;
+    bottom: -19.6%;
+    justify-content: space-between;
+}
+
+.wheel {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--color-2);
+}
+
+.wheel:nth-child(1) {
+    margin-left: 10px;
+}
+</style>

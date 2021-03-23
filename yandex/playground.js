@@ -62,11 +62,31 @@ solution(input).then(result => {
 });
 
 async function solution(input) {
-    // ... решение задачи
+    if (!(input instanceof Folder)) return []
 
-    // пример вызова read
-    input.read(1, (file) => console.log(file));
+    let res = []
+    let size = await new Promise((resolve) => {
+        input.size((size) => resolve(size))
+    })
 
-    // пример вызова size
-    input.size((size) => console.log(size));
+    for (let i=0; i<size; i++) {
+        let file = await new Promise((resolve) => {
+            input.read(i, (file) => {
+                resolve(file)
+            })
+        })
+
+        if (file instanceof Folder) {
+            let arr = await solution(file)
+            res = res.concat(arr)
+        }
+
+        if (typeof file === 'string' && file !== 'file') {
+            res.push(file)
+        }
+    }
+
+    res.sort()
+
+    return res
 }
